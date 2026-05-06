@@ -1,65 +1,139 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
+import Fly20Logo from "../fly-20_logo.webp";
+import GeorgeLishmanImg from "../George_Lishman.webp";
+import CharlieHartleyImg from "../Charlie_Hartley.webp";
+import AndrewBilezikianImg from "../Andrew_Bilezikian.png";
+import SoccerSupplementsLogo from "../SoccerSupplements.webp";
+import OTRLogo from "../OTR_logo.png";
+import NayaLogo from "../naya.png";
+import IcecartelLogo from "../Icecartel.png";
+import DrinklyteLogo from "../Drinklyte.png";
+import DeepwatersProjectLogo from "../Deepwatersproject.png";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+import {
+  SiUpwork,
+  SiFiverr,
+  SiReact,
+  SiTypescript,
+  SiNodedotjs,
+  SiPostgresql,
+  SiShopify,
+} from "react-icons/si";
 
 const companies = [
-  { name: "Company One", description: "Placeholder description for a past client project." },
-  { name: "Company Two", description: "Placeholder description for a past client project." },
-  { name: "Company Three", description: "Placeholder description for a past client project." },
-  { name: "Company Four", description: "Placeholder description for a past client project." },
-  { name: "Company Five", description: "Placeholder description for a past client project." },
-  { name: "Company Six", description: "Placeholder description for a past client project." },
+  {
+  name: "Soccer Supplement",
+  description: "E-commerce store offering performance supplements tailored for footballers.",
+  logo: SoccerSupplementsLogo,
+},
+{
+  name: "OTR",
+  description: "Online retailer specialising in toll kits and vehicle accessories.",
+  logo: OTRLogo,
+},
+{
+  name: "Naya",
+  description: "Modern coffee brand with a clean and engaging online presence.",
+  logo: NayaLogo,
+},
+{
+  name: "Icecartel",
+  description: "E-commerce brand focused on men's moissanite jewellery.",
+  logo: IcecartelLogo,
+},
+{
+  name: "Drinklyte",
+  description: "Hydration brand designed to support recovery after nights out.",
+  logo: DrinklyteLogo,
+},
+{
+  name: "Deepwaters Project",
+  description: "Mission-driven platform focused on sharing biblical content and resources.",
+  logo: DeepwatersProjectLogo,
+},
 ];
 
 const services = [
   {
-    title: "Service One",
-    description:
-      "Placeholder description for a service you offer as a full stack developer.",
-  },
-  {
-    title: "Service Two",
-    description:
-      "Placeholder description for another core service or engagement model.",
-  },
-  {
-    title: "Service Three",
-    description: "Placeholder description for a third service offering.",
-  },
+  title: "Full-Stack Web Application Development",
+  description:
+    "Designing and building scalable SaaS platforms, dashboards, and internal tools using modern technologies like React and Node.js.",
+},
+{
+  title: "API Integration & Backend Development",
+  description:
+    "Developing and integrating reliable APIs, managing webhooks, and connecting systems to work seamlessly together.",
+},
+{
+  title: "Payment Integration Systems",
+  description:
+    "Implementing secure and reliable payment solutions tailored to your business needs.",
+},
+{
+  title: "Automation & Workflow Systems",
+  description:
+    "Building automation systems, including scheduled jobs, queues, and bulk processing, to streamline and scale business operations.",
+},
 ];
 
 const testimonials = [
   {
-    name: "Client Name",
-    role: "Role, Company",
+    name: "Charlie H",
+    role: "Design Agency Owner",
     quote:
-      "This is a placeholder testimonial. Replace this with real feedback from your clients later.",
+      "I had the pleasure of partnering with Fly20 Agency for my e-commerce stores, and I couldn't be more impressed. From the initial consultation to the final delivery, their team demonstrated professionalism, creativity, and technical expertise. The ongoing support they provide is outstanding. I highly recommend Fly20 to anyone looking to elevate their online business.",
+    image: CharlieHartleyImg,
   },
   {
-    name: "Client Name",
-    role: "Role, Company",
+    name: "George L",
+    role: "E-commerce founder",
     quote:
-      "Another placeholder testimonial. Use this space to highlight outcomes and collaboration.",
+      "I cannot speak highly enough about Fly20. Their team went above and beyond to understand our unique business needs and delivered an exceptional Shopify solution. The level of customisation they provided, combined with their expertise in conversion optimisation, has significantly boosted our sales. The project was completed on time and within budget, and the communication throughout the process was excellent.",
+    image: GeorgeLishmanImg,
+  },
+  {
+    name: "Andrew B",
+    role: "Online retail owner",
+    quote:
+      "Working with Fly20 was an incredible experience. They transformed our online store into a stunning, user-friendly platform that exceeded our expectations. Their team's expertise, attention to detail, and timely communication ensured a smooth and successful project. We couldn't be happier. Highly recommend their services!",
+    image: AndrewBilezikianImg,
   },
 ];
 
 const faqs = [
   {
-    question: "Placeholder Question One",
-    answer: "Placeholder answer. Replace with your own FAQ content later.",
+    question: "What kind of projects do you take on?",
+    answer:
+      "I work on SaaS platforms, API integrations, payment systems, and automation-heavy applications where reliability matters.",
   },
   {
-    question: "Placeholder Question Two",
-    answer: "Placeholder answer. Replace with your own FAQ content later.",
+    question: "Do you work on small tasks?",
+    answer:
+      "I focus on medium to long-term projects or technically meaningful work where I can add real value.",
   },
   {
-    question: "Placeholder Question Three",
-    answer: "Placeholder answer. Replace with your own FAQ content later.",
+    question: "Can you fix existing systems or only build new ones?",
+    answer:
+      "Both. A lot of my work involves fixing unreliable APIs, payments, and backend logic, then improving and scaling them.",
   },
   {
-    question: "Placeholder Question Four",
-    answer: "Placeholder answer. Replace with your own FAQ content later.",
+    question: "Do you handle both frontend and backend?",
+    answer:
+      "Yes — I work full-stack, from backend logic and APIs to frontend integration using React.",
+  },
+  {
+    question: "How do you handle complex systems?",
+    answer:
+      "I break problems down, focus on reliability, and ensure edge cases and failure scenarios are handled properly.",
+  },
+  {
+    question: "What technologies do you use?",
+    answer:
+      "React, TypeScript, Node.js, PostgreSQL, APIs, webhooks, and modern deployment tools like Vercel.",
   },
 ];
 
@@ -71,22 +145,28 @@ function FAQAccordion() {
   };
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-3">
       {faqs.map((item, index) => (
         <div
           key={item.question}
-          className="border border-slate-200 rounded-md overflow-hidden bg-white/50"
+          className="border border-slate-200 rounded-xl overflow-hidden bg-white shadow-sm"
         >
           <button
             type="button"
             onClick={() => toggle(index)}
-            className="w-full flex items-center justify-between px-4 py-3 text-left hover:bg-slate-50"
+            className="w-full flex items-center justify-between px-4 sm:px-5 py-3.5 text-left hover:bg-slate-50 transition-colors"
           >
-            <span className="font-medium text-slate-900">{item.question}</span>
-            <span className="text-slate-500 text-sm">{openIndex === index ? "−" : "+"}</span>
+            <span className="font-medium text-slate-900 text-sm sm:text-[15px]">
+              {item.question}
+            </span>
+            <span className="ml-4 flex h-6 w-6 items-center justify-center rounded-full border border-slate-300 text-xs text-slate-500">
+              {openIndex === index ? "−" : "+"}
+            </span>
           </button>
           {openIndex === index && (
-            <div className="px-4 pb-4 text-sm text-slate-600">{item.answer}</div>
+            <div className="px-4 sm:px-5 py-4 text-xs sm:text-sm text-slate-600 border-t border-slate-200">
+              {item.answer}
+            </div>
           )}
         </div>
       ))}
@@ -95,34 +175,110 @@ function FAQAccordion() {
 }
 
 export default function Home() {
+  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [contactStatus, setContactStatus] = useState<
+    "idle" | "submitting" | "success" | "error"
+  >("idle");
+
+  const handleScrollToServices = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    if (typeof window === "undefined") return;
+    const target = document.getElementById("services");
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
+  const handleContactSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setContactStatus("submitting");
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const name = formData.get("name") as string | null;
+    const email = formData.get("email") as string | null;
+    const message = formData.get("message") as string | null;
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, message }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Non-OK response from /api/contact");
+      }
+
+      form.reset();
+      setContactStatus("success");
+    } catch (error) {
+      console.error("Failed to submit contact form:", error);
+      setContactStatus("error");
+    }
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (typeof window === "undefined") return;
+
+      const currentY = window.scrollY;
+
+      if (currentY > lastScrollY && currentY > 80) {
+        // Scrolling down past a small threshold – hide header
+        setIsHeaderVisible(false);
+      } else {
+        // Scrolling up – show header
+        setIsHeaderVisible(true);
+      }
+
+      setLastScrollY(currentY);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
+
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-50">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        {/* Navigation */}
-        <header className="flex items-center justify-between py-6">
+    <div className="min-h-screen bg-slate-50 text-slate-900 scroll-smooth">
+      {/* Navigation */}
+      <header
+        className={`sticky top-0 z-20 bg-[#334FB4] backdrop-blur-sm transition-transform duration-300 border-b border-slate-200 ${
+          isHeaderVisible ? "translate-y-0" : "-translate-y-full"
+        }`}
+      >
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex items-center justify-between py-6">
           <div className="flex items-center gap-2">
-            <div className="h-9 w-9 rounded-md bg-slate-800 flex items-center justify-center">
-              <span className="text-xs font-semibold tracking-tight">F20</span>
-            </div>
-            <span className="text-sm font-semibold tracking-tight">Umang Patel</span>
+            <Image
+              src={Fly20Logo}
+              alt="Fly20 logo"
+              width={100}
+              height={34}
+              className="h-9 w-auto"
+              priority
+            />
+            <span className="text-sm font-semibold tracking-tight text-white">Fly-20</span>
           </div>
 
-          <nav className="hidden md:flex items-center gap-8 text-sm text-slate-300">
-            <a href="#services" className="hover:text-slate-50 transition-colors">
+          <nav className="hidden md:flex items-center gap-8 text-sm text-white">
+            <a href="#services" className="hover:text-slate-100 transition-colors">
               Services
             </a>
-            <a href="#testimonials" className="hover:text-slate-50 transition-colors">
+            <a href="#testimonials" className="hover:text-slate-100 transition-colors">
               Testimonials
             </a>
-            <a href="#faq" className="hover:text-slate-50 transition-colors">
+            <a href="#faq" className="hover:text-slate-100 transition-colors">
               FAQ
             </a>
-            <a href="#contact" className="hover:text-slate-50 transition-colors">
+            <a href="#contact" className="hover:text-slate-100 transition-colors">
               Contact
             </a>
             <a
-              href="#contact"
-              className="inline-flex items-center rounded-full bg-sky-500 px-4 py-1.5 text-sm font-medium text-slate-950 hover:bg-sky-400 transition-colors"
+              href="https://calendly.com/fly20/discussion"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center rounded-full bg-white px-8 py-3 text-sm sm:text-base font-medium text-[#334FB4] hover:bg-slate-100 transition-colors min-w-[200px]"
             >
               Book a Call
             </a>
@@ -130,221 +286,338 @@ export default function Home() {
 
           <div className="md:hidden">
             <a
-              href="#contact"
-              className="inline-flex items-center rounded-full bg-sky-500 px-3 py-1 text-xs font-medium text-slate-950 hover:bg-sky-400 transition-colors"
+              href="https://calendly.com/fly20/discussion"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center rounded-full bg-white px-8 py-3 text-sm sm:text-base font-medium text-[#334FB4] hover:bg-slate-100 transition-colors min-w-[200px]"
             >
               Book a Call
             </a>
           </div>
-        </header>
+        </div>
+      </header>
 
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Hero */}
-        <main className="pb-16">
-          <section className="py-12 md:py-16 border-b border-slate-800">
-            <div className="grid gap-10 md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] items-center">
+        <main className="pb-20">
+          <section className="py-16 md:py-24 border-b border-slate-200">
+            <div className="grid gap-10 md:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] items-center">
+              {/* Left column – intro */}
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sky-400 mb-3">
+                <p className="text-xm font-bold uppercase tracking-[0.2em] text-[#334FB4] mb-3">
                   Full Stack Developer
                 </p>
-                <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-slate-50 mb-4">
-                  Building clean, performant web experiences for modern products.
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-slate-900 my-12">
+                  Building web applications, integrations & automation systems for businesses
                 </h1>
-                <p className="text-sm sm:text-base text-slate-300 mb-6 max-w-xl">
-                  Placeholder tagline. Use this space to describe who you are, the kind of work you
-                  do, and the type of clients or teams you help. You can update this copy anytime.
+                <p className="text-sm sm:text-base text-slate-600 mb-6 max-w-xl">
+                  Helping startups and teams solve problems with APIs, payments, and scalable backend logic.
                 </p>
-                <div className="flex flex-wrap gap-3">
+                <div className="flex items-center gap-3 text-slate-600 mb-4">
+                  <span className="text-xs font-medium text-slate-500 mr-1">Find me on:</span>
                   <a
-                    href="#contact"
-                    className="inline-flex items-center rounded-full bg-sky-500 px-5 py-2 text-sm font-medium text-slate-950 hover:bg-sky-400 transition-colors"
-                  >
-                    Book a Call
-                  </a>
-                  <Link
                     href="https://github.com/Fly-20"
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center rounded-full border border-slate-700 px-5 py-2 text-sm font-medium text-slate-50 hover:border-slate-500 hover:bg-slate-900/60 transition-colors"
+                    className="h-10 w-10 rounded-full border border-slate-300 flex items-center justify-center bg-white hover:bg-slate-50 hover:border-slate-400 transition-colors group"
+                    aria-label="GitHub"
                   >
-                    View GitHub
-                  </Link>
+                    <FaGithub className="h-6 w-6 text-slate-700 group-hover:text-[#24292f] transition-colors" />
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/in/umang-fly20/"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="h-10 w-10 rounded-full border border-slate-300 flex items-center justify-center bg-white hover:bg-slate-50 hover:border-slate-400 transition-colors group"
+                    aria-label="LinkedIn"
+                  >
+                    <FaLinkedin className="h-6 w-6 text-slate-700 group-hover:text-[#0a66c2] transition-colors" />
+                  </a>
+                  <a
+                    href="https://www.upwork.com/freelancers/~012915a3e4098e5c24"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="h-10 w-10 rounded-full border border-slate-300 flex items-center justify-center bg-white hover:bg-slate-50 hover:border-slate-400 transition-colors group"
+                    aria-label="Upwork"
+                  >
+                    <SiUpwork className="h-6 w-6 text-slate-700 group-hover:text-[#6fda44] transition-colors" />
+                  </a>
+                  <a
+                    href="https://www.fiverr.com/fly20web"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="h-10 w-10 rounded-full border border-slate-300 flex items-center justify-center bg-white hover:bg-slate-50 hover:border-slate-400 transition-colors group"
+                    aria-label="Fiverr"
+                  >
+                    <SiFiverr className="h-6 w-6 text-slate-700 group-hover:text-[#1dbf73] transition-colors" />
+                  </a>
+                </div>
+                <div className="flex flex-wrap gap-3 mt-6 mb-3">
+                  <a
+                    href="#services"
+                    className="inline-flex items-center justify-center rounded-full bg-[#334FB4] px-8 py-3 text-sm sm:text-base font-medium text-white hover:bg-[#283b86] transition-colors min-w-[200px]"
+                  >
+                    View Services
+                  </a>
                 </div>
               </div>
 
+              {/* Right column – video testimonial */}
               <div className="hidden md:flex justify-end">
-                <div className="relative w-full max-w-xs rounded-2xl border border-slate-800 bg-gradient-to-br from-slate-900 to-slate-950 p-5">
-                  <div className="text-xs font-medium text-slate-300 mb-3">Tech stack snapshot</div>
-                  <div className="flex flex-wrap gap-2 text-[11px]">
-                    <span className="rounded-full bg-slate-900 px-3 py-1 border border-slate-800 text-slate-200">
-                      Next.js
-                    </span>
-                    <span className="rounded-full bg-slate-900 px-3 py-1 border border-slate-800 text-slate-200">
-                      TypeScript
-                    </span>
-                    <span className="rounded-full bg-slate-900 px-3 py-1 border border-slate-800 text-slate-200">
-                      React
-                    </span>
-                    <span className="rounded-full bg-slate-900 px-3 py-1 border border-slate-800 text-slate-200">
-                      Node.js
-                    </span>
-                    <span className="rounded-full bg-slate-900 px-3 py-1 border border-slate-800 text-slate-200">
-                      Tailwind CSS
-                    </span>
-                    <span className="rounded-full bg-slate-900 px-3 py-1 border border-slate-800 text-slate-200">
-                      PostgreSQL
-                    </span>
+                <div className="w-full max-w-md flex flex-col gap-3">
+                  <h3 className="text-2xl sm:text-3xl font-semibold text-slate-900 text-center">Hear From Our Clients</h3>
+                  <div className="rounded-2xl border border-slate-200 bg-white p-5 flex flex-col gap-3 shadow-sm w-full">
+                    <div className="relative w-full aspect-video rounded-lg overflow-hidden bg-slate-100">
+                      <iframe
+                        src="https://www.youtube.com/embed/kANyXgz-I7k?modestbranding=1"
+                        title="Client video testimonial for Umang Patel"
+                        className="w-full h-full border-0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowFullScreen
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
+
+            <div className="mt-6 flex justify-center">
+              <a href="#services" aria-label="Scroll down" onClick={handleScrollToServices}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  className="h-6 w-6 text-slate-900 animate-bounce"
+                  style={{ animationDuration: "2.2s" }}
+                  aria-hidden="true"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M12 16.5a1 1 0 0 1-.7-.29l-5-5a1 1 0 0 1 1.4-1.42L12 14.09l4.3-4.3a1 1 0 1 1 1.4 1.42l-5 5a1 1 0 0 1-.7.29Z"
+                  />
+                </svg>
+              </a>
+            </div>
           </section>
 
-          {/* Logos / Companies */}
-          <section id="logos" className="py-12 md:py-16 border-b border-slate-800">
-            <div className="flex items-baseline justify-between mb-8">
-              <h2 className="text-lg font-semibold text-slate-50">Companies I&apos;ve worked with</h2>
-              <p className="text-xs text-slate-400">
-                Placeholder logos and descriptions. Replace with real client names later.
-              </p>
+          {/* Logos / Companies / Work */}
+          <section
+            id="logos"
+            className="py-8 border-b border-slate-200 bg-[#334FB4] -mx-4 sm:-mx-6 lg:-mx-8 text-white rounded-2xl"
+          >
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="mb-8 text-center">
+                <h2 className="text-2xl sm:text-3xl font-semibold text-white">Clients</h2>
+              </div>
+              <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
+                {companies.map((company) => (
+                  <div
+                    key={company.name}
+                    className="rounded-xl border border-slate-100 bg-white p-5 flex flex-col gap-4 shadow-sm"
+                  >
+                    <div className="h-16 w-16 relative">
+                      <Image
+                        src={company.logo}
+                        alt={company.name}
+                        fill
+                        className="object-contain"
+                      />
+                    </div>
+                    <div>
+                      <h3 className="text-sm font-semibold text-slate-900 mb-1">{company.name}</h3>
+                      <p className="text-xs text-slate-600">{company.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
-            <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
-              {companies.map((company) => (
-                <div
-                  key={company.name}
-                  className="rounded-xl border border-slate-800 bg-slate-950/60 p-4 flex flex-col gap-3"
-                >
-                  <div className="h-10 w-24 rounded bg-slate-800/80" />
-                  <div>
-                    <h3 className="text-sm font-semibold text-slate-50 mb-1">{company.name}</h3>
-                    <p className="text-xs text-slate-400">{company.description}</p>
+          </section>
+
+          {/* Services + Skills */}
+          <section
+            id="services"
+            className="py-12 md:py-16 border-b -mx-4 sm:-mx-6 lg:-mx-8 text-slate-900"
+          >
+            <div className="max-w-7xl mx-auto px-5 sm:px-8 space-y-10">
+              <div className="text-center mb-4 max-w-2xl mx-auto">
+                <h2 className="text-2xl sm:text-3xl font-semibold mb-2">Services</h2>
+                <p className="text-xs sm:text-sm text-slate-600">
+                  I build reliable backend systems, integrations, and automation workflows that continue to perform long after launch.
+                </p>
+              </div>
+
+              <div className="grid gap-6 md:grid-cols-2">
+                {services.map((service) => (
+                  <div
+                    key={service.title}
+                    className="rounded-2xl bg-[#334FB4] shadow-sm border border-transparent px-6 py-8 flex flex-col gap-4 transform transition-transform duration-200 hover:-translate-y-1 hover:shadow-md hover:scale-[1.01]"
+                  >
+                    <div className="flex items-center gap-4">
+                      <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-white/10 text-white text-lg">
+                        <span>⚡</span>
+                      </div>
+                      <div>
+                        <h3 className="text-sm font-semibold mb-1 text-white">
+                          {service.title}
+                        </h3>
+                        <p className="text-xs sm:text-sm text-slate-100">
+                          {service.description}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="pt-10 border-t border-slate-200 space-y-4">
+                <div className="text-2xl sm:text-3xl font-semibold mb-8 text-center">
+                 Tech Stack
+                </div>
+                <div className="flex flex-wrap items-center justify-center gap-7 text-slate-700">
+                  <div className="flex flex-col items-center text-xs sm:text-[13px] gap-1.5">
+                    <SiReact className="h-9 w-9 text-sky-500" />
+                    <span>React</span>
+                  </div>
+                  <div className="flex flex-col items-center text-xs sm:text-[13px] gap-1.5">
+                    <SiTypescript className="h-9 w-9 text-sky-700" />
+                    <span>TypeScript</span>
+                  </div>
+                  <div className="flex flex-col items-center text-xs sm:text-[13px] gap-1.5">
+                    <SiNodedotjs className="h-9 w-9 text-emerald-600" />
+                    <span>Node.js</span>
+                  </div>
+                  <div className="flex flex-col items-center text-xs sm:text-[13px] gap-1.5">
+                    <SiPostgresql className="h-9 w-9 text-sky-800" />
+                    <span>PostgreSQL</span>
+                  </div>
+                  <div className="flex flex-col items-center text-xs sm:text-[13px] gap-1.5">
+                    <SiShopify className="h-9 w-9 text-emerald-500" />
+                    <span>Shopify</span>
                   </div>
                 </div>
-              ))}
-            </div>
-          </section>
-
-          {/* Services */}
-          <section id="services" className="py-12 md:py-16 border-b border-slate-800">
-            <div className="flex items-baseline justify-between mb-8">
-              <h2 className="text-lg font-semibold text-slate-50">Services</h2>
-              <p className="text-xs text-slate-400">
-                High-level overview of how you can help teams and clients.
-              </p>
-            </div>
-            <div className="grid gap-6 md:grid-cols-3">
-              {services.map((service) => (
-                <div
-                  key={service.title}
-                  className="flex flex-col rounded-xl border border-slate-800 bg-slate-950/60 p-5"
-                >
-                  <h3 className="text-sm font-semibold text-slate-50 mb-2">{service.title}</h3>
-                  <p className="text-xs text-slate-400 mb-4">{service.description}</p>
-                  <span className="mt-auto text-[11px] text-slate-500">
-                    Placeholder – update with specific outcomes, timelines, or tooling later.
-                  </span>
-                </div>
-              ))}
+              </div>
             </div>
           </section>
 
           {/* Testimonials */}
-          <section id="testimonials" className="py-12 md:py-16 border-b border-slate-800">
-            <div className="flex items-baseline justify-between mb-8">
-              <h2 className="text-lg font-semibold text-slate-50">Testimonials</h2>
-              <p className="text-xs text-slate-400">
-                Replace these placeholders with real client quotes when you&apos;re ready.
-              </p>
+          <section id="testimonials" className="py-16 md:py-24 border-b border-slate-200">
+            <div className="mb-8 text-center">
+              <h2 className="text-2xl sm:text-3xl font-semibold text-slate-900">Testimonials</h2>
             </div>
-            <div className="grid gap-6 md:grid-cols-2">
+            <div className="grid gap-8 md:grid-cols-3">
               {testimonials.map((testimonial, index) => (
                 <div
                   key={`${testimonial.name}-${index}`}
-                  className="rounded-xl border border-slate-800 bg-slate-950/60 p-5 flex flex-col gap-3"
+                  className="rounded-2xl border border-slate-200 bg-white p-6 flex flex-col gap-4 shadow-sm h-full"
                 >
-                  <p className="text-sm text-slate-200">“{testimonial.quote}”</p>
-                  <div className="text-xs text-slate-400">
-                    <div className="font-medium text-slate-200">{testimonial.name}</div>
-                    <div>{testimonial.role}</div>
+                  <div className="flex items-center gap-3">
+                    <div className="h-10 w-10 rounded-full overflow-hidden bg-slate-100 flex items-center justify-center">
+                      <Image
+                        src={testimonial.image}
+                        alt={testimonial.name}
+                        width={40}
+                        height={40}
+                        className="h-full w-full object-cover"
+                      />
+                    </div>
+                    <div className="text-xs text-slate-600">
+                      <div className="font-medium text-slate-900 text-sm">{testimonial.name}</div>
+                      <div>{testimonial.role}</div>
+                    </div>
                   </div>
+                  <p className="text-sm sm:text-[15px] text-slate-700 leading-relaxed">“{testimonial.quote}”</p>
                 </div>
               ))}
             </div>
           </section>
 
           {/* FAQ */}
-          <section id="faq" className="py-12 md:py-16 border-b border-slate-800">
-            <div className="flex items-baseline justify-between mb-6">
-              <h2 className="text-lg font-semibold text-slate-50">FAQ</h2>
-              <p className="text-xs text-slate-400 max-w-xs text-right">
-                Placeholder questions and answers. You can fully customize this content later.
-              </p>
+          <section id="faq" className="py-12 md:py-16 border-b border-slate-200 bg-slate-50/80">
+            <div className="max-w-3xl mx-auto">
+              <div className="text-center mb-7">
+                <h2 className="text-2xl sm:text-3xl font-semibold mb-2 text-slate-900">FAQ</h2>
+                <p className="text-xs sm:text-sm text-slate-500 max-w-xl mx-auto">
+                  A few quick answers to how I work, the type of projects I take on, and the stack I use.
+                </p>
+              </div>
+              <FAQAccordion />
             </div>
-            <FAQAccordion />
           </section>
 
-          {/* Contact / Calendly */}
+          {/* Contact */}
           <section id="contact" className="py-12 md:py-16">
-            <div className="grid gap-8 md:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] items-start">
-              <div>
-                <h2 className="text-lg font-semibold text-slate-50 mb-3">Contact</h2>
-                <p className="text-sm text-slate-300 mb-4 max-w-md">
-                  When you&apos;re ready, this is where people can book a call directly into your
-                  calendar. You can also surface your preferred contact methods here.
-                </p>
-                <div className="space-y-2 text-sm text-slate-300">
-                  <p>
-                    Email: <span className="text-slate-100">your.email@example.com</span>
-                  </p>
-                  <p>
-                    LinkedIn:{" "}
-                    <Link
-                      href="https://www.linkedin.com/in/umang-fly20/"
-                      target="_blank"
-                      rel="noreferrer"
-                      className="text-sky-400 hover:text-sky-300"
-                    >
-                      /umang-fly20
-                    </Link>
-                  </p>
-                  <p>
-                    GitHub:{" "}
-                    <Link
-                      href="https://github.com/Fly-20"
-                      target="_blank"
-                      rel="noreferrer"
-                      className="text-sky-400 hover:text-sky-300"
-                    >
-                      Fly-20
-                    </Link>
-                  </p>
+            <div className="flex flex-col items-center">
+              <h2 className="text-2xl sm:text-3xl font-semibold mb-3 text-center text-slate-900">Contact</h2>
+              <p className="text-sm text-slate-600 mb-4 max-w-md text-center">
+                If you have questions, need help setting up automations, or want to learn more about me, reach out, we're here to help.
+              </p>
+              <form className="space-y-4 max-w-md w-full" onSubmit={handleContactSubmit}>
+                <div className="space-y-1">
+                  <label
+                    htmlFor="name"
+                    className="block text-xs font-medium text-slate-700"
+                  >
+                    Name
+                  </label>
+                  <input
+                    id="name"
+                    className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-sky-500 focus:border-sky-500"
+                    placeholder="Your name"
+                    type="text"
+                    name="name"
+                  />
                 </div>
-              </div>
-
-              <div className="rounded-2xl border border-slate-800 bg-slate-950/80 p-5">
-                <h3 className="text-sm font-semibold text-slate-50 mb-2">Book a Call</h3>
-                <p className="text-xs text-slate-400 mb-4">
-                  This card is reserved for your Calendly embed. You can paste your embed code here
-                  later. For now, this button can link out to your Calendly page.
-                </p>
-                <a
-                  href="#"
-                  className="inline-flex items-center rounded-full bg-sky-500 px-4 py-2 text-xs font-medium text-slate-950 hover:bg-sky-400 transition-colors"
+                <div className="space-y-1">
+                  <label
+                    htmlFor="email"
+                    className="block text-xs font-medium text-slate-700"
+                  >
+                    Email
+                  </label>
+                  <input
+                    id="email"
+                    className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-sky-500 focus:border-sky-500"
+                    placeholder="you@example.com"
+                    type="email"
+                    name="email"
+                  />
+                </div>
+                <div className="space-y-1">
+                  <label
+                    htmlFor="message"
+                    className="block text-xs font-medium text-slate-700"
+                  >
+                    Project details
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows={4}
+                    className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-sky-500 focus:border-sky-500 resize-none"
+                    placeholder="Share a bit about what you want to build or improve."
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className="inline-flex items-center justify-center rounded-full bg-[#334FB4] px-8 py-3 text-sm sm:text-base font-medium text-white hover:bg-[#283b86] transition-colors min-w-[200px] disabled:opacity-70 disabled:cursor-not-allowed"
+                  disabled={contactStatus === "submitting"}
                 >
-                  Open Calendly
-                </a>
-              </div>
+                  {contactStatus === "submitting" ? "Sending..." : "Send Message"}
+                </button>
+              </form>
             </div>
           </section>
         </main>
 
-        <footer className="border-t border-slate-800 py-6 text-xs text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <div>© 2026 Umang Patel</div>
+        <footer className="border-t border-slate-200 py-6 text-xs text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div className="text-center sm:text-left">
+            © 2026 FLY-20 LTD · Company No. 14103702 · VAT No. 501942712
+          </div>
           <div className="flex items-center gap-4">
             <Link
               href="https://github.com/Fly-20"
               target="_blank"
               rel="noreferrer"
-              className="hover:text-slate-300 transition-colors"
+              className="hover:text-slate-700 transition-colors"
             >
               GitHub
             </Link>
@@ -352,7 +625,7 @@ export default function Home() {
               href="https://www.linkedin.com/in/umang-fly20/"
               target="_blank"
               rel="noreferrer"
-              className="hover:text-slate-300 transition-colors"
+              className="hover:text-slate-700 transition-colors"
             >
               LinkedIn
             </Link>

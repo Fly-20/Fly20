@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import Fly20Logo from "../fly-20_logo.webp";
+import Fly20Logo from "../fly-20_logo.png";
 import GeorgeLishmanImg from "../George_Lishman.webp";
 import CharlieHartleyImg from "../Charlie_Hartley.webp";
 import AndrewBilezikianImg from "../Andrew_Bilezikian.png";
@@ -26,58 +26,64 @@ import {
 
 const companies = [
   {
-  name: "Soccer Supplement",
-  description: "E-commerce store offering performance supplements tailored for footballers.",
-  logo: SoccerSupplementsLogo,
-},
-{
-  name: "OTR",
-  description: "Online retailer specialising in toll kits and vehicle accessories.",
-  logo: OTRLogo,
-},
-{
-  name: "Naya",
-  description: "Modern coffee brand with a clean and engaging online presence.",
-  logo: NayaLogo,
-},
-{
-  name: "Icecartel",
-  description: "E-commerce brand focused on men's moissanite jewellery.",
-  logo: IcecartelLogo,
-},
-{
-  name: "Drinklyte",
-  description: "Hydration brand designed to support recovery after nights out.",
-  logo: DrinklyteLogo,
-},
-{
-  name: "Deepwaters Project",
-  description: "Mission-driven platform focused on sharing biblical content and resources.",
-  logo: DeepwatersProjectLogo,
-},
+    name: "Soccer Supplement",
+    description: "E-commerce store offering performance supplements tailored for footballers.",
+    logo: SoccerSupplementsLogo,
+    url: "https://www.soccersupplement.com/",
+  },
+  {
+    name: "OTR",
+    description: "Online retailer specialising in toll kits and vehicle accessories.",
+    logo: OTRLogo,
+    url: "https://officialtoolroll.com/",
+  },
+  {
+    name: "Naya",
+    description: "Modern coffee brand with a clean and engaging online presence.",
+    logo: NayaLogo,
+    url: "https://www.nayapremiumcoffee.com/",
+  },
+  {
+    name: "Icecartel",
+    description: "E-commerce brand focused on men's moissanite jewellery.",
+    logo: IcecartelLogo,
+    url: "https://icecartel.com/",
+  },
+  {
+    name: "Drinklyte",
+    description: "Hydration brand designed to support recovery after nights out.",
+    logo: DrinklyteLogo,
+    url: "https://drinklyte.co/",
+  },
+  {
+    name: "Deepwaters Project",
+    description: "Mission-driven platform focused on sharing biblical content and resources.",
+    logo: DeepwatersProjectLogo,
+    url: "https://deepwatersproject.com/",
+  },
 ];
 
 const services = [
   {
-  title: "Full-Stack Web Application Development",
-  description:
-    "Designing and building scalable SaaS platforms, dashboards, and internal tools using modern technologies like React and Node.js.",
-},
-{
-  title: "API Integration & Backend Development",
-  description:
-    "Developing and integrating reliable APIs, managing webhooks, and connecting systems to work seamlessly together.",
-},
-{
-  title: "Payment Integration Systems",
-  description:
-    "Implementing secure and reliable payment solutions tailored to your business needs.",
-},
-{
-  title: "Automation & Workflow Systems",
-  description:
-    "Building automation systems, including scheduled jobs, queues, and bulk processing, to streamline and scale business operations.",
-},
+    title: "Full-Stack Web Application Development",
+    description:
+      "Designing and building scalable SaaS platforms, dashboards, and internal tools using modern technologies like React and Node.js.",
+  },
+  {
+    title: "API Integration & Backend Development",
+    description:
+      "Developing and integrating reliable APIs, managing webhooks, and connecting systems to work seamlessly together.",
+  },
+  {
+    title: "Payment Integration Systems",
+    description:
+      "Implementing secure and reliable payment solutions tailored to your business needs.",
+  },
+  {
+    title: "Automation & Workflow Systems",
+    description:
+      "Building automation systems, including scheduled jobs, queues, and bulk processing, to streamline and scale business operations.",
+  },
 ];
 
 const testimonials = [
@@ -180,6 +186,7 @@ export default function Home() {
   const [contactStatus, setContactStatus] = useState<
     "idle" | "submitting" | "success" | "error"
   >("idle");
+  const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
 
   const handleScrollToServices = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
@@ -284,17 +291,83 @@ export default function Home() {
             </a>
           </nav>
 
-          <div className="md:hidden">
-            <a
-              href="https://calendly.com/fly20/discussion"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-full bg-white px-8 py-3 text-sm sm:text-base font-medium text-[#334FB4] hover:bg-slate-100 transition-colors min-w-[200px]"
+          <div className="md:hidden flex items-center">
+            <button
+              type="button"
+              className="inline-flex items-center justify-center rounded-md p-2 text-white hover:bg-[#283b86] focus:outline-none focus:ring-2 focus:ring-white"
+              aria-label={isMobileNavOpen ? "Close navigation menu" : "Open navigation menu"}
+              onClick={() => setIsMobileNavOpen((prev) => !prev)}
             >
-              Book a Call
-            </a>
+              <svg
+                className="h-6 w-6"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                {isMobileNavOpen ? (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                ) : (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                )}
+              </svg>
+            </button>
           </div>
         </div>
+
+        {isMobileNavOpen && (
+          <div className="md:hidden border-t border-slate-200 bg-[#334FB4]">
+            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4 space-y-3">
+              <a
+                href="#services"
+                className="block text-sm text-white hover:text-slate-100"
+                onClick={() => setIsMobileNavOpen(false)}
+              >
+                Services
+              </a>
+              <a
+                href="#testimonials"
+                className="block text-sm text-white hover:text-slate-100"
+                onClick={() => setIsMobileNavOpen(false)}
+              >
+                Testimonials
+              </a>
+              <a
+                href="#faq"
+                className="block text-sm text-white hover:text-slate-100"
+                onClick={() => setIsMobileNavOpen(false)}
+              >
+                FAQ
+              </a>
+              <a
+                href="#contact"
+                className="block text-sm text-white hover:text-slate-100"
+                onClick={() => setIsMobileNavOpen(false)}
+              >
+                Contact
+              </a>
+              <a
+                href="https://calendly.com/fly20/discussion"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-2 inline-flex w-full items-center justify-center rounded-full bg-white px-8 py-3 text-sm font-medium text-[#334FB4] hover:bg-slate-100 transition-colors"
+                onClick={() => setIsMobileNavOpen(false)}
+              >
+                Book a Call
+              </a>
+            </div>
+          </div>
+        )}
       </header>
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -355,7 +428,7 @@ export default function Home() {
                 <div className="flex flex-wrap gap-3 mt-6 mb-3">
                   <a
                     href="#services"
-                    className="inline-flex items-center justify-center rounded-full bg-[#334FB4] px-8 py-3 text-sm sm:text-base font-medium text-white hover:bg-[#283b86] transition-colors min-w-[200px]"
+                    className="inline-flex items-center justify-center rounded-full bg-[#334FB4] px-8 py-3 text-sm sm:text-base font-medium text-white hover:bg-[#283b86] transition-colors min-w-[200px] w-full sm:w-auto"
                   >
                     View Services
                   </a>
@@ -363,7 +436,7 @@ export default function Home() {
               </div>
 
               {/* Right column – video testimonial */}
-              <div className="hidden md:flex justify-end">
+              <div className="flex justify-center md:justify-end">
                 <div className="w-full max-w-md flex flex-col gap-3">
                   <h3 className="text-2xl sm:text-3xl font-semibold text-slate-900 text-center">Hear From Our Clients</h3>
                   <div className="rounded-2xl border border-slate-200 bg-white p-5 flex flex-col gap-3 shadow-sm w-full">
@@ -410,10 +483,25 @@ export default function Home() {
               </div>
               <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
                 {companies.map((company) => (
-                  <div
+                  <a
                     key={company.name}
-                    className="rounded-xl border border-slate-100 bg-white p-5 flex flex-col gap-4 shadow-sm"
+                    href={company.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="group relative rounded-xl border border-slate-100 bg-white p-5 flex flex-col gap-4 shadow-sm transform transition-transform duration-200 hover:-translate-y-1 hover:shadow-md hover:scale-[1.01]"
                   >
+                    <div className="absolute top-3 right-3">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        className="h-5 w-5 text-black transition-colors"
+                        aria-hidden="true"
+                      >
+                        <path d="M11 3a1 1 0 0 0 0 2h2.586l-4.293 4.293a1 1 0 1 0 1.414 1.414L15 6.414V9a1 1 0 1 0 2 0V4.5A1.5 1.5 0 0 0 15.5 3H11Z" />
+                        <path d="M5 5a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-3a1 1 0 1 0-2 0v3H5V7h3a1 1 0 0 0 0-2H5Z" />
+                      </svg>
+                    </div>
                     <div className="h-16 w-16 relative">
                       <Image
                         src={company.logo}
@@ -426,7 +514,7 @@ export default function Home() {
                       <h3 className="text-sm font-semibold text-slate-900 mb-1">{company.name}</h3>
                       <p className="text-xs text-slate-600">{company.description}</p>
                     </div>
-                  </div>
+                  </a>
                 ))}
               </div>
             </div>
@@ -598,7 +686,7 @@ export default function Home() {
                 </div>
                 <button
                   type="submit"
-                  className="inline-flex items-center justify-center rounded-full bg-[#334FB4] px-8 py-3 text-sm sm:text-base font-medium text-white hover:bg-[#283b86] transition-colors min-w-[200px] disabled:opacity-70 disabled:cursor-not-allowed"
+                  className="inline-flex items-center justify-center rounded-full bg-[#334FB4] px-8 py-3 text-sm sm:text-base font-medium text-white hover:bg-[#283b86] transition-colors min-w-[200px] w-full sm:w-auto disabled:opacity-70 disabled:cursor-not-allowed"
                   disabled={contactStatus === "submitting"}
                 >
                   {contactStatus === "submitting" ? "Sending..." : "Send Message"}

@@ -4,6 +4,9 @@ import './globals.css';
 export const metadata: Metadata = {
   title: 'Fly20 - Umang Patel',
   description: 'Portfolio of Umang Patel, Full Stack Developer',
+  icons: {
+    icon: '/fly-20_favicon.png',
+  },
 };
 
 export default function RootLayout({
